@@ -88,7 +88,7 @@ router.post('/adminlogin', async (req, res) => {
     const sql = "SELECT * FROM admin WHERE email = ?";
 
     con.query(sql, [email], function (err, result) {
-      // res.send(result)
+      // res.send(password)
       if (err) {
         res.status(500).send(err);
       } else {
@@ -100,8 +100,8 @@ router.post('/adminlogin', async (req, res) => {
         } else {
           // Here, you can handle the login logic based on the result returned
           // For example, check the password or generate a session token for the user
-          if (result[1].password === password) {
-            res.send(result[1]);
+          if (result[0].password === password) {
+            res.send(result[0]);
           } else {
             res.send("NOOO")
           }
