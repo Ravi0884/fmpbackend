@@ -1,10 +1,10 @@
 const mysql = require('mysql');
 
 const con = mysql.createConnection({
-    host: 'sql6.freemysqlhosting.net',
-    user: 'sql6639079',
-    password: "3EKbazgYp6",
-    database:"sql6639079"
+    host: 'db4free.net',
+    user: 'raviraj',
+    password: "Raviraj1234",
+    database:"fixmyplot"
 })
 
 module.exports=con
