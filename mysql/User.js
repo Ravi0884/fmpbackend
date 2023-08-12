@@ -14,6 +14,40 @@ router.get('/user', async (req, res) => {
   })
 })
 
+router.post('/userlogin', async (req, res) => {
+  try {
+    const email = req.body.email;
+    const password = req.body.password;
+    const sql = "SELECT * FROM users WHERE email = ?";
+
+    con.query(sql, [email], function (err, result) {
+      if (err) {
+        res.status(500).send(err);
+      } else {
+        if (result.length === 0) {
+          res.status(404).send({
+            status: false,
+            message: "User Not Found"
+          });
+        } else {
+          // Here, you can handle the login logic based on the result returned
+          // For example, check the password or generate a session token for the user
+          if (result[0].password === password) {
+            res.send(result);
+          } else {
+            res.send("Password not match")
+          }
+
+        }
+      }
+    });
+  } catch (error) {
+    res.status(500).send({
+      status: false,
+      message: "Error occurred during login"
+    });
+  }
+});
 
 router.post('/userRegistration', async (req, res) => {
   try {
